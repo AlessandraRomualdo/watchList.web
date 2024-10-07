@@ -1,3 +1,16 @@
 <section class="bg-background w-full h-full">
-    ADMINISTRATION
+    <app-header-admin></app-header-admin>
+    <div class="flex flex-col items-center mt-8 max-w-[1032px] m-auto">
+        <h1 class="text-white text-3xl font-bold border-b-2 border-primary"><span class="text-primary text-3xl font-bold">D</span>ashboard</h1>
+        <div class="flex gap-4 items-center mt-20">
+            <app-card-dashbord
+                title="Filme"
+                [quantity]="movies.length"
+            ></app-card-dashbord>
+            <app-card-dashbord
+                title="Serie"
+                [quantity]="series.length"
+            ></app-card-dashbord>
+        </div>
+    </div>
 </section>
