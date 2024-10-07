@@ -22,6 +22,11 @@ export const routes: Routes = [
     title: 'Cadastro'
   },
   {
+    path: 'administration',
+    loadComponent: () => import('./pages/administration/administration.component').then(m => m.AdministrationComponent),
+    title: 'Administração'
+  },
+  {
     path: '**',
     redirectTo: 'homepage'
   }
