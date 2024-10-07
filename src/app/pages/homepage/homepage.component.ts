@@ -5,12 +5,13 @@ import { MovieService } from "../../services/movie/movie.service";
 import { Movie } from "../../services/movie/movie.types";
 import { SerieService } from "../../services/serie/serie.service";
 import { Serie } from "../../services/serie/serie.type";
+import { HeaderComponent } from "../../shared/hearder/header.component";
 
 @Component({
     selector: 'app-homepage',
     standalone: true,
     templateUrl: './homepage.component.html',
-    imports: [CommonModule, CardMovieComponent],
+    imports: [CommonModule, CardMovieComponent, HeaderComponent],
 })
 export class HomepageComponent implements OnInit{
 
