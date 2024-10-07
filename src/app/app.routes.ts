@@ -17,6 +17,11 @@ export const routes: Routes = [
     title: 'Login'
   },
   {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent),
+    title: 'Cadastro'
+  },
+  {
     path: '**',
     redirectTo: 'homepage'
   }
