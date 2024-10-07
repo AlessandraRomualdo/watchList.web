@@ -5,6 +5,8 @@ import { MovieService } from "../../services/movie/movie.service";
 import { SerieService } from "../../services/serie/serie.service";
 import { Movie } from "../../services/movie/movie.types";
 import { Serie } from "../../services/serie/serie.type";
+import { UserService } from "../../services/user/user.service";
+import { User } from "../../services/user/user.type";
 
 @Component({
     selector: 'app-administration',
@@ -16,10 +18,13 @@ export class AdministrationComponent implements OnInit{
 
     public movies: Movie[] = [];
     public series: Serie[] = [];
+    public users: User[] = [];
+    public lists: any[] = [];
     
     constructor(
         private movieService: MovieService,
         private serieService: SerieService,
+        private userService: UserService,
     ) {}
 
     ngOnInit() {
@@ -29,6 +34,9 @@ export class AdministrationComponent implements OnInit{
 
         this.serieService.getSeries().subscribe((data: Serie[]) => {
             this.series = data;
+        });
+        this.userService.getUsers().subscribe((data: User[]) => {
+            this.users = data;
         });
     }
 }
