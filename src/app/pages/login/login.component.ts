@@ -2,6 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LoginService } from "../../services/login/login.service";
+import { login } from "../../services/login/login.type";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -18,7 +20,7 @@ import { LoginService } from "../../services/login/login.service";
                     <label for="">Senha</label>
                     <input type="password" class="p-2 border border-background rounded-md" formControlName="password" placeholder="Senha" />
                 </div>
-                <button (click)="onSubmit()" type="submit">Entrar</button>
+                <button (click)="onSubmit()" type="button">Entrar</button>
             </form>
         </div>
     `,
@@ -27,9 +29,11 @@ import { LoginService } from "../../services/login/login.service";
 export class LoginComponent implements OnInit{
 
     form!: FormGroup ;
+    public payload!: login
 
     constructor(
         private loginService: LoginService,
+        private router: Router,
     ) { }
 
     ngOnInit() {
@@ -44,8 +48,18 @@ export class LoginComponent implements OnInit{
     }
 
     onSubmit() {
-        this.loginService.login(this.form.value.email, this.form.value.password).subscribe((data) => {
-            console.log(data);
-        });
+        if (this.form.invalid) return;
+        const { email, password } = this.form.value;
+        this.loginService.login(email, password).then(res => res.subscribe(
+            (data) => {
+                this.payload = data;
+                console.log(data);
+                if (String(this.payload.role) === 'admin' || String(this.payload.role) === 'editor') {
+                    this.router.navigate(['/administration']);
+                } else {
+                    this.router.navigate(['/homepage']);
+                }
+            }   
+        ));
     }
 }

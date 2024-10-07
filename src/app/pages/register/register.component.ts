@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { RegisterService } from "../../services/register/register.service";
+import { SHA256 } from "crypto-js";
 
 @Component({
     selector: 'app-register',
@@ -23,7 +24,7 @@ import { RegisterService } from "../../services/register/register.service";
                     </div>
                     <div class="flex flex-col p-2 gap-2">
                         <label for="">Senha</label>
-                        <input type="password" class="p-2 border border-background rounded-md" formControlName="password" placeholder="Senha" />
+                        <input type="password" class="p-2 border border-background rounded-md" formControlName="pass" placeholder="Senha" />
                     </div>    
 
                     <button (click)="onSubmit()" type="submit">Cadastrar</button>
@@ -49,13 +50,15 @@ export class RegisterComponent implements OnInit {
             this.form = new FormGroup({
                 name: new FormControl('', Validators.required),
                 email: new FormControl('', Validators.required),
-                password: new FormControl('', Validators.required),
+                pass: new FormControl('', Validators.required),
                 birthDate: new FormControl('', Validators.required),
             });
         }
     
         onSubmit() {
-            this.registerService.register(this.form.value).subscribe((data) => {
+            const { name, email, pass, birthDate } = this.form.value;
+            const password = SHA256(pass).toString();
+            this.registerService.register({ name, email, password, birthDate}).subscribe((data) => {
                 console.log(data);
             });
             
