@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { FormMovieComponent } from "../components/form-movie/form-movie.component";
+import { FormMovieComponent } from "../../components/form-movie/form-movie.component";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { RouterLink } from "@angular/router";
-import { MovieService } from "../../../services/movie/movie.service";
+import { MovieService } from "../../../../services/movie/movie.service";
 
 @Component({
     selector: 'app-new-movie',

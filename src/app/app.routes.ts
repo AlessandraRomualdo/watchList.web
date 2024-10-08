@@ -31,17 +31,17 @@ export const routes: Routes = [
       // rotas filhas
       {
         path: 'movie-settings',
-        loadComponent: () => import('./pages/administration/movie-settings/movie-settings.component').then(m => m.MovieSettingsComponent),
+        loadComponent: () => import('./pages/administration/movie/movie-settings/movie-settings.component').then(m => m.MovieSettingsComponent),
         title: 'Configurações de Filmes',
       },
       {
         path: 'movie-edit/:id',
-        loadComponent: () => import('./pages/administration/movie-edit/movie-edit.component').then(m => m.MovieEditComponent),
+        loadComponent: () => import('./pages/administration/movie/movie-edit/movie-edit.component').then(m => m.MovieEditComponent),
         title: 'Edição de Filme',
       },
       {
         path: 'new-movie',
-        loadComponent: () => import('./pages/administration/new-movie/new-movie.component').then(m => m.NewMovieComponent),
+        loadComponent: () => import('./pages/administration/movie/new-movie/new-movie.component').then(m => m.NewMovieComponent),
         title: 'Novo Filme',
       },
     ]

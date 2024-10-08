@@ -1,15 +1,13 @@
 import { Component, inject, OnInit } from "@angular/core";
-import { MovieService } from "../../../services/movie/movie.service";
-import { Movie } from "../../../services/movie/movie.types";
-import { MovieListItemComponent } from "./components/movie-item-list/movie-item-list.component";
+import { MovieService } from "../../../../services/movie/movie.service";
+import { Movie } from "../../../../services/movie/movie.types";
 import { CommonModule } from "@angular/common";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { GenderService } from "../../../services/gender/gender.service";
-import { Gender } from "../../../services/gender/gender.types";
+import { GenderService } from "../../../../services/gender/gender.service";
+import { Gender } from "../../../../services/gender/gender.types";
 import { debounceTime } from "rxjs";
-import { MatDialog } from "@angular/material/dialog";
-import { MovieEditComponent } from "../movie-edit/movie-edit.component";
 import { Router } from "@angular/router";
+import { MovieListItemComponent } from "../../components/movie-item-list/movie-item-list.component";
 
 
 @Component({
@@ -17,8 +15,8 @@ import { Router } from "@angular/router";
     standalone: true,
     template: `
         <section class="bg-background w-full flex flex-col  min-h-screen">
-
-            <form [formGroup]="form" class="w-full flex flex-col md:flex-row items-center justify-between p-2 gap-4">
+        <h1 class="mt-4 text-white text-3xl font-bold border-b-2 border-primary text-center">Gerenciamento de Filmes</h1>
+            <form [formGroup]="form" class="mt-8 w-full flex flex-col md:flex-row items-center justify-between p-2 gap-4">
                 <div class="w-full flex flex-col items-start justify-start">
                     <label class="py-2 text-white" for="search">Busca</label>
                     <input

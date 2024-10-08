@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { FormMovieComponent } from "../components/form-movie/form-movie.component";
+import { FormMovieComponent } from "../../components/form-movie/form-movie.component";
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
-import { MovieService } from "../../../services/movie/movie.service";
-import { Movie } from "../../../services/movie/movie.types";
+import { MovieService } from "../../../../services/movie/movie.service";
+import { Movie } from "../../../../services/movie/movie.types";
 import { MatDialog } from "@angular/material/dialog";
 
 @Component({

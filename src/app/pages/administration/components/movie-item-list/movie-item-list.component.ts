@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Movie } from '../../../../../services/movie/movie.types';
+import { Movie } from '../../../../services/movie/movie.types';
 
 
 @Component({
   selector: 'app-movie-list-item',
   standalone: true,
   template: `
-        <div class="max-w-[1032px] w-full flex text-white justify-between items-center p-4 border-b bg-background-secondary rounded-lg shadow-lg hover:opacity-70 hover:bg-primary hover:text-black cursor-pointer">
+        <div class="max-w-[1032px] w-full flex text-white justify-between items-center p-4 border-b bg-background-secondary shadow-lg hover:opacity-70 hover:bg-primary hover:text-black cursor-pointer">
             <div class="flex flex-col gap-2 items-start">
                 <h3 class="text-lg font-bold ">{{ movie.title }}</h3>
                 <p class="text-sm ">Genero: {{ movie.gender.gender }}</p>
