@@ -8,7 +8,7 @@ import { Serie } from "../../services/serie/serie.type";
 import { UserService } from "../../services/user/user.service";
 import { User } from "../../services/user/user.type";
 import { ListService } from "../../services/list/list.service";
-import { RouterOutlet } from "@angular/router";
+import { Router, RouterOutlet } from "@angular/router";
 
 @Component({
     selector: 'app-administration',
@@ -28,6 +28,7 @@ export class AdministrationComponent implements OnInit{
         private serieService: SerieService,
         private userService: UserService,
         private listService: ListService,
+        private router: Router,
     ) {}
 
     ngOnInit() {
@@ -43,5 +44,9 @@ export class AdministrationComponent implements OnInit{
         this.listService.getLists().subscribe((data: any) => {
             this.lists = data;
         });
+    }
+
+    onManageMovies(): void {
+        this.router.navigate(['administration/movie-settings']);
     }
 }
