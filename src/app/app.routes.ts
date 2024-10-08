@@ -24,15 +24,20 @@ export const routes: Routes = [
   },
   {
     path: 'administration',
-    canActivateChild: [AuthGuard],  // Aplicando canActivateChild
+    canActivateChild: [AuthGuard],
     loadComponent: () => import('./pages/administration/administration.component').then(m => m.AdministrationComponent),
     title: 'Administração',
     children: [
-      // Rotas-filhas aqui
+      // rotas filhas
       {
         path: 'movie-settings',
         loadComponent: () => import('./pages/administration/movie-settings/movie-settings.component').then(m => m.MovieSettingsComponent),
         title: 'Configurações de Filmes',
+      },
+      {
+        path: 'movie-edit/:id',
+        loadComponent: () => import('./pages/administration/movie-edit/movie-edit.component').then(m => m.MovieEditComponent),
+        title: 'Edição de Filme',
       },
     ]
   },
