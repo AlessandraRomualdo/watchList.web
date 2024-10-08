@@ -10,7 +10,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
                 (click)="manage.emit()"
                 class="flex items-center gap-2 mt-4 bg-primary text-white font-bold p-2 rounded-lg hover:bg-primary-hover"
             >
-            <img class="w-[16px] h-[16px] " src="../../../assets/icons/settings.svg" alt="icone de engrenagem">
+            <img class="w-[16px] h-[16px] " src="/assets/icons/settings.svg" alt="icone de engrenagem">
             Gerenciar</button>
         </div>
     `,
