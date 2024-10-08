@@ -4,20 +4,20 @@
         <h1 class="text-white text-3xl font-bold border-b-2 border-primary"><span class="text-primary text-3xl font-bold">D</span>ashboard</h1>
         <div class="flex flex-wrap gap-2 items-center mt-20 mb-4">
             <app-card-dashbord
-                title="Filme"
+                title="Filmes"
                 [quantity]="movies.length"
                 (manage)="onManageMovies()"
             ></app-card-dashbord>
             <app-card-dashbord
-                title="Serie"
+                title="Series"
                 [quantity]="series.length"
             ></app-card-dashbord>
             <app-card-dashbord
-                title="Usuario"
+                title="Usuários"
                 [quantity]="users.length"
             ></app-card-dashbord>
             <app-card-dashbord
-                title="Lista"
+                title="Listas"
                 [quantity]="lists.length"
             ></app-card-dashbord>
         </div>

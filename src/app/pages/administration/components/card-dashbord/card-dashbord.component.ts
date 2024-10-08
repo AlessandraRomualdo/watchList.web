@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
     standalone: true,
     template: `
         <div class="w-[250px] h-[200px] rounded-lg shadow-xl bg-background-secondary flex flex-col items-center justify-center gap-4">
-            <h2 class="text-white font-bold text-2xl">{{ quantity }} - {{ title }} (s)</h2>
+            <h2 class="text-white font-bold text-2xl">{{ quantity }} - {{ title }}</h2>
             <button
                 (click)="manage.emit()"
                 class="flex items-center gap-2 mt-4 bg-primary text-white font-bold p-2 rounded-lg hover:bg-primary-hover"

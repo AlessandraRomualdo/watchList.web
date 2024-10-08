@@ -12,11 +12,11 @@ import { ReactiveFormsModule } from "@angular/forms";
     template: `
         <section class="bg-background w-full flex flex-col  min-h-screen">
 
-            <div class="w-full flex items-center justify-between p-2 gap-4">
+            <div class="w-full flex flex-col md:flex-row items-center justify-between p-2 gap-4">
                 <div class="w-full flex flex-col items-start justify-start">
                     <label class="py-2 text-white" for="search">Busca</label>
                     <input
-                        class="h-10 w-full border text-white border-gray-300 p-2 rounded-xl bg-background-secondary" 
+                        class="h-10 w-full outline-none border text-white border-gray-300 p-2 rounded-xl bg-background-secondary" 
                         id="search" 
                         type="text" 
                         placeholder="Busque o nome do filme">
@@ -30,7 +30,7 @@ import { ReactiveFormsModule } from "@angular/forms";
                         <option *ngFor="let movie of movies" value="{{movie.gender.gender}}">{{movie.gender.gender}}</option>
                     </select>
                 </div>
-                <div class="w-full">
+                <div class="w-full flex justify-center">
                     <button class="mt-9 text-white font-bold bg-primary px-4 py-2 border border-primary rounded-full hover:bg-primary-hover"> + Novo Filme</button>
                 </div>
             </div>
