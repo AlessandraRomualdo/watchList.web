@@ -30,4 +30,20 @@ export class MovieService {
             map((response: { data: Movie[] }) => response.data)
         );
     }
+
+    getMovieById(id: string): Observable<Movie> {
+        return this.http.get<{ data: Movie }>(`${this.API}/movie/${id}`).pipe(
+            map((response: { data: Movie }) => response.data)
+        );
+    }
+
+    editMovie(id: string, movie: any): Observable<Movie> {
+        return this.http.patch<{ data: Movie }>(`${this.API}/movie/${id}`, movie).pipe(
+            map((response: { data: Movie }) => response.data)
+        );
+    }
+
+    deleteMovie(id: string): Observable<void> {
+        return this.http.delete<void>(`${this.API}/movie/${id}`);
+    }
 }    

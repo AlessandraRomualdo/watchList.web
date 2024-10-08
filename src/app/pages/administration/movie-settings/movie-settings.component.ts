@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { MovieService } from "../../../services/movie/movie.service";
 import { Movie } from "../../../services/movie/movie.types";
 import { MovieListItemComponent } from "./components/movie-item-list/movie-item-list.component";
@@ -7,6 +7,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { GenderService } from "../../../services/gender/gender.service";
 import { Gender } from "../../../services/gender/gender.types";
 import { debounceTime } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
+import { MovieEditComponent } from "../movie-edit/movie-edit.component";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -63,10 +66,12 @@ export class MovieSettingsComponent implements OnInit{
     public noMoviesFound: boolean = false;
 
     public form!: FormGroup;
+
     
     constructor(
         private movieService: MovieService,
         private genderService: GenderService,
+        private router: Router,
     ) {}
 
     ngOnInit(): void {
@@ -117,15 +122,17 @@ export class MovieSettingsComponent implements OnInit{
         });    
     }
 
-    // Método para editar um filme
+    // metodo para editar um filme
   onEditMovie(movie: Movie): void {
     console.log('Editar filme:', movie);
-    // lógica para abrir o modal ou redirecionar para a tela de edição
+    this.router.navigate(['/administration/movie-edit', movie.id]);
   }
 
-  // Método para excluir um filme
+  // metodo para excluir um filme
   onDeleteMovie(movie: Movie): void {
     console.log('Excluir filme:', movie);
-    // lógica para excluir o filme
+    this.movieService.deleteMovie(movie.id).subscribe(() => {
+      this.getMovies();
+    });
   }
 }
