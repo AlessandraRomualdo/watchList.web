@@ -39,7 +39,11 @@ import { Router } from "@angular/router";
                     </select>
                 </div>
                 <div class="w-full flex justify-center">
-                    <button type="button" class="mt-9 text-white font-bold bg-primary px-4 py-2 border border-primary rounded-full hover:bg-primary-hover"> + Novo Filme</button>
+                    <button
+                        type="button"
+                        (click)="newMovie()"
+                        class="mt-9 text-white font-bold bg-primary px-4 py-2 border border-primary rounded-full hover:bg-primary-hover"
+                    > + Novo Filme</button>
                 </div>
             </form>
             <div class="mt-8">
@@ -120,6 +124,11 @@ export class MovieSettingsComponent implements OnInit{
             title: new FormControl(''),
             gender: new FormControl(''),
         });    
+    }
+
+    // metodo para ir para a tela q cria um novo filme
+    newMovie(): void {
+        this.router.navigate(['/administration/new-movie']);
     }
 
     // metodo para editar um filme

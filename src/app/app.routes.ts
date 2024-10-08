@@ -39,6 +39,11 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/administration/movie-edit/movie-edit.component').then(m => m.MovieEditComponent),
         title: 'Edição de Filme',
       },
+      {
+        path: 'new-movie',
+        loadComponent: () => import('./pages/administration/new-movie/new-movie.component').then(m => m.NewMovieComponent),
+        title: 'Novo Filme',
+      },
     ]
   },
   {
