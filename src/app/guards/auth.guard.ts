@@ -38,7 +38,7 @@ export class AuthGuard implements CanActivateChild {
 
         if (!hasValidRole) {
             // Redireciona para a página "não autorizado" se não tiver a role necessária
-            this.router.navigate(['/unauthorized']);
+            this.router.navigate(['/homepage']);
             return false;
         }
 
