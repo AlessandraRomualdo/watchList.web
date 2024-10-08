@@ -29,6 +29,11 @@ export const routes: Routes = [
     title: 'Administração',
     children: [
       // Rotas-filhas aqui
+      {
+        path: 'movie-settings',
+        loadComponent: () => import('./pages/administration/movie-settings/movie-settings.component').then(m => m.MovieSettingsComponent),
+        title: 'Configurações de Filmes',
+      },
     ]
   },
   {
