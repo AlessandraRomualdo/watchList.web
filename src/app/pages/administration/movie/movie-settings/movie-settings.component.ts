@@ -36,6 +36,36 @@ import { MovieListItemComponent } from "../../components/movie-item-list/movie-i
                         <option *ngFor="let gender of genders" value={{gender.gender}}>{{ gender.gender }}</option>
                     </select>
                 </div>
+                <div class="w-full flex items-center justify-center gap-4">
+                    <input 
+                        type="radio" 
+                        name="order" 
+                        id="asc" 
+                        value="asc" 
+                        formControlName="order"
+                        class="hidden"
+                    />
+                    <label 
+                        class="mt-8 text-white font-bold text-sm cursor-pointer p-2 bg-primary border border-primary rounded-lg overflow-hidden hover:bg-primary-hover"
+                         [ngClass]="{ 'bg-primary-dark text-white': form.get('order')?.value === 'asc' }"
+                        for="asc"
+                    >A - Z</label>
+
+                    <input 
+                        type="radio" 
+                        name="order" 
+                        id="desc" 
+                        value="desc" 
+                        formControlName="order"
+                        class="hidden"
+                    />
+                    <label 
+                        class="mt-8 text-white font-bold text-sm cursor-pointer p-2 bg-primary border border-primary rounded-lg overflow-hidden hover:bg-primary-hover"
+                        [ngClass]="{ 'bg-primary-dark text-white': form.get('order')?.value === 'desc' }"
+                        for="desc"
+                    >Z - A</label>
+                    </div>
+
                 <div class="w-full flex justify-center">
                     <button
                         type="button"
@@ -93,11 +123,9 @@ export class MovieSettingsComponent implements OnInit{
         const filterValues = {
             title: this.form.get('title')?.value || '',
             gender: this.form.get('gender')?.value || '',
+            orderBy: this.form.get('order')?.value || 'asc',
         };
-
-        // this.movieService.getMovies(filterValues).subscribe((data: any) => {
-        //     this.movies = data;
-        // });
+        console.log('filtros:', filterValues);
         this.movieService.getMovies(filterValues).subscribe((data: any) => {
             if (data.length === 0) {
               this.noMoviesFound = true;
@@ -121,6 +149,7 @@ export class MovieSettingsComponent implements OnInit{
         this.form = new FormGroup({
             title: new FormControl(''),
             gender: new FormControl(''),
+            order: new FormControl('asc'),
         });    
     }
 
@@ -130,16 +159,16 @@ export class MovieSettingsComponent implements OnInit{
     }
 
     // metodo para editar um filme
-  onEditMovie(movie: Movie): void {
-    console.log('Editar filme:', movie);
-    this.router.navigate(['/administration/movie-edit', movie.id]);
-  }
+    onEditMovie(movie: Movie): void {
+        console.log('Editar filme:', movie);
+        this.router.navigate(['/administration/movie-edit', movie.id]);
+    }
 
-  // metodo para excluir um filme
-  onDeleteMovie(movie: Movie): void {
-    console.log('Excluir filme:', movie);
-    this.movieService.deleteMovie(movie.id).subscribe(() => {
-      this.getMovies();
-    });
-  }
+    // metodo para excluir um filme
+    onDeleteMovie(movie: Movie): void {
+        console.log('Excluir filme:', movie);
+        this.movieService.deleteMovie(movie.id).subscribe(() => {
+        this.getMovies();
+        });
+    }
 }

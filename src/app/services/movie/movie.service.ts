@@ -14,7 +14,10 @@ export class MovieService {
         private http: HttpClient,
     ) { }
 
-    getMovies(filters?: { title?: string; gender?: string }): Observable<Movie[]> {
+    getMovies(filters?: { title?: string; gender?: string; orderBy?: string }): Observable<Movie[]> {
+        // se não tiver filtro, seta o orderBy como asc
+        filters = { orderBy: 'asc', ...filters };
+
         // com GET deve ser usar o HttpParams para passar os parametros
         let params = new HttpParams();
 
