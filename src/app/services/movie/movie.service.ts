@@ -46,4 +46,10 @@ export class MovieService {
     deleteMovie(id: string): Observable<void> {
         return this.http.delete<void>(`${this.API}/movie/${id}`);
     }
+
+    createMovie(movie: any): Observable<Movie> {
+        return this.http.post<{ data: Movie }>(`${this.API}/movie`, movie).pipe(
+            map((response: { data: Movie }) => response.data)
+        );
+    }
 }    
