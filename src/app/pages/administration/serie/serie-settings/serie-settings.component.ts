@@ -88,14 +88,17 @@ export class SerieSettingsComponent implements OnInit{
     }
 
     newSerie(): void {
-
+        this.router.navigate(['/administration/new-serie']);
     }
 
     onEditSerie(serie: Serie): void {
+        this.router.navigate(['/administration/serie-edit' , serie.id]);
 
     }
 
     onDeleteSerie(serie: Serie): void {
-
+        this.seriesService.deleteSerie(serie.id).subscribe(() => {
+            this.getSeries();
+        });
     }
 }

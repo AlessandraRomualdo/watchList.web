@@ -5,34 +5,36 @@ import { FormMovieComponent } from "../../components/form-movie/form-movie.compo
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { MovieService } from "../../../../services/movie/movie.service";
 import { Movie } from "../../../../services/movie/movie.types";
+import { SerieService } from "../../../../services/serie/serie.service";
+import { Serie } from "../../../../services/serie/serie.type";
 
 
 @Component({
-    selector: 'app-movie-edit',
+    selector: 'app-serie-edit',
     standalone: true,
     template: `
         <div class="max-w-[1032px] h-auto bg-background shadow-xl">
             <div class="flex flex-col w-full">
                 <div class="flex w-full items-center justify-between p-2 py-4 text-white font-bold">
-                    <h2 class="ml-4 text-2xl">Edição de dados do Filme</h2>
+                    <h2 class="ml-4 text-2xl">Edição de dados da Serie</h2>
                 </div>
                 <div class="bg-primary h-[1px] w-full"></div>
             </div>
             <div class="flex w-full h-auto flex-col md:flex-row">
-                <app-form-movie class="w-full" [form]="movieForm"></app-form-movie>
+                <app-form-movie class="w-full" [form]="serieForm"></app-form-movie>
             </div>
             <div class="w-full flex flex-col">
                 <div class="bg-primary h-[1px] w-full"></div>
                 <div class="w-full mb-4 flex items-center justify-end self-end gap-4">
                     <button 
                     type="button"
-                    routerLink="/administration/movie-settings"
+                    routerLink="/administration/serie-settings"
                     class="mt-9 text-white font-bold bg-primary px-4 py-2 border border-primary rounded-full hover:bg-primary-hover"
                     >Voltar</button>
                     <button
-                        [disabled]="movieForm.invalid || movieForm.pristine"
+                        [disabled]="serieForm.invalid || serieForm.pristine"
                         type="button"
-                        (click)="editMovie()"
+                        (click)="editSerie()"
                         class="mt-9 text-white font-bold bg-primary px-4 py-2 border border-primary rounded-full hover:bg-primary-hover disabled:bg-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-500 disabled:border-gray-500"
                     >Salvar</button>
                 </div>
@@ -41,15 +43,15 @@ import { Movie } from "../../../../services/movie/movie.types";
     `,
     imports: [ReactiveFormsModule, CommonModule, FormMovieComponent, RouterLink]
 })
-export class MovieEditComponent implements OnInit{
+export class SerieEditComponent implements OnInit{
 
-    public movieForm!: FormGroup;
-    public movie!: Movie;
+    public serieForm!: FormGroup;
+    public serie!: Serie;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private movieService: MovieService,
+        private serieService: SerieService,
     ) { }
 
     ngOnInit(): void {
@@ -58,9 +60,9 @@ export class MovieEditComponent implements OnInit{
         this.route.paramMap.subscribe(params => {
             const id = params.get('id');
             if (id) {
-                this.movieService.getMovieById(id).subscribe(movie => {
-                this.movie = movie;
-                this.loadMovieData();
+                this.serieService.getSerieById(id).subscribe(serie => {
+                this.serie = serie;
+                this.loadSerieData();
                 });
             }
         });
@@ -68,7 +70,7 @@ export class MovieEditComponent implements OnInit{
     }
 
     buildForm(): void {
-        this.movieForm = new FormGroup({
+        this.serieForm = new FormGroup({
           title: new FormControl('', Validators.required),
           gender: new FormControl('', Validators.required),
           description: new FormControl('', Validators.required),
@@ -76,32 +78,32 @@ export class MovieEditComponent implements OnInit{
         });
     }
 
-    loadMovieData(): void {
-        this.movieForm.patchValue({
-            title: this.movie.title,
-            gender: this.movie.gender.id,
-            description: this.movie.description,
-            poster: this.movie.poster
+    loadSerieData(): void {
+        this.serieForm.patchValue({
+            title: this.serie.title,
+            gender: this.serie.gender.id,
+            description: this.serie.description,
+            poster: this.serie.poster
         });
     }
 
-    editMovie(): void {
-        if (this.movieForm.invalid) {
+    editSerie(): void {
+        if (this.serieForm.invalid) {
             return;
         }
 
-        const movie = this.movieForm.getRawValue();
-        const id = this.movie.id;
+        const movie = this.serieForm.getRawValue();
+        const id = this.serie.id;
         const modieEdit = {
             title: movie.title,
             poster: movie.poster,
             description: movie.description,
-            genderId: this.movieForm.getRawValue().gender
+            genderId: this.serieForm.getRawValue().gender
         }
-        this.movieService.editMovie(id, modieEdit).subscribe(() => {
-            this.router.navigate(['/administration/movie-settings']);
+        this.serieService.editSerie(id, modieEdit).subscribe(() => {
+            this.router.navigate(['/administration/serie-settings']);
         });
 
-        this.movieForm.markAsPristine();
+        this.serieForm.markAsPristine();
     }
 }

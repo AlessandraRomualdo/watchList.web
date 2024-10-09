@@ -48,6 +48,16 @@ export const routes: Routes = [
         path: 'serie-settings',
         loadComponent: () => import('./pages/administration/serie/serie-settings/serie-settings.component').then(m => m.SerieSettingsComponent),
         title: 'Configurações de Séries',
+      },
+      {
+        path: 'serie-edit/:id',
+        loadComponent: () => import('./pages/administration/serie/serie-edit/serie-edit.component').then(m => m.SerieEditComponent),
+        title: 'Edição de Série',
+      },
+      {
+        path: 'new-serie',
+        loadComponent: () => import('./pages/administration/serie/new-serie/new-serie.component').then(m => m.NewSerieComponent),
+        title: 'Nova Série',
       }
     ]
   },

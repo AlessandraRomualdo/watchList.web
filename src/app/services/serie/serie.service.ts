@@ -37,4 +37,26 @@ export class SerieService {
             map((response: { data: Serie[] }) => response.data)
         );
     }
+
+    getSerieById(id: string): Observable<Serie> {
+        return this.http.get<{ data: Serie }>(`${this.API}/serie/${id}`).pipe(
+            map((response: { data: Serie }) => response.data)
+        );
+    }
+
+    editSerie(id: string, serie: any): Observable<Serie> {
+        return this.http.patch<{ data: Serie }>(`${this.API}/serie/${id}`, serie).pipe(
+            map((response: { data: Serie }) => response.data)
+        );
+    }
+
+    deleteSerie(id: string): Observable<void> {
+        return this.http.delete<void>(`${this.API}/serie/${id}`);
+    }
+
+    createMovie(serie: any): Observable<Serie> {
+        return this.http.post<{ data: Serie }>(`${this.API}/serie`, serie).pipe(
+            map((response: { data: Serie }) => response.data)
+        );
+    }
 }
