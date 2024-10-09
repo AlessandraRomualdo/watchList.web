@@ -17,14 +17,18 @@ import { SerieService } from "../../../../services/serie/serie.service";
                 <div class="bg-primary h-[1px] w-full"></div>
             </div>
             <div class="flex w-full h-auto flex-col md:flex-row">
-                <app-form-movie class="w-full" [form]="serieForm"></app-form-movie>
+                <app-form-movie 
+                    class="w-full"
+                    [IsSerie]="true"
+                    [form]="serieForm"
+                ></app-form-movie>
             </div>
             <div class="w-full flex flex-col">
                 <div class="bg-primary h-[1px] w-full"></div>
                 <div class="w-full mb-4 flex items-center justify-end self-end gap-4">
                     <button 
                     type="button"
-                    routerLink="/administration/movie-settings"
+                    routerLink="/administration/serie-settings"
                     class="mt-9 text-white font-bold bg-primary px-4 py-2 border border-primary rounded-full hover:bg-primary-hover"
                     >Voltar</button>
                     <button
@@ -57,20 +61,22 @@ export class NewSerieComponent implements OnInit{
           gender: new FormControl('', Validators.required),
           description: new FormControl('', Validators.required),
           poster: new FormControl('', Validators.required),
+          seasons: new FormControl('', Validators.required),
         });
     }
 
     createMovie():void {
-        const movie = this.serieForm.value;
-        const newMovie = {
-            title: movie.title,
-            description: movie.description,
-            poster: movie.poster,
-            genderId: movie.gender
+        const serie = this.serieForm.value;
+        const newSerie = {
+            title: serie.title,
+            description: serie.description,
+            poster: serie.poster,
+            genderId: serie.gender,
+            seasons: serie.seasons
         }
-        this.serieService.createMovie(newMovie).subscribe(() => {
+        this.serieService.createMovie(newSerie).subscribe(() => {
             this.serieForm.reset();
         });
-        console.log(newMovie);
+        console.log(newSerie);
     }
 }

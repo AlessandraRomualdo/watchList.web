@@ -42,16 +42,27 @@ import { Gender } from "../../../../services/gender/gender.types";
                             formControlName="description" 
                             placeholder="Descrição do filme"></textarea>
                     </div>
-                    <div class="flex flex-col w-full p-2">
-                        <label class="text-white" for="poster">Poster</label>
-                        <input 
-                            class="h-10 w-full outline-none border text-white border-gray-300 p-2 rounded-xl bg-background-secondary" 
-                            id="poster" 
-                            type="text" 
-                            formControlName="poster" 
-                            placeholder="URL do poster">
-                         
+                    <div class="flex flex-col w-full">
+                        <div class="flex flex-col w-full p-2">
+                            <label class="text-white" for="poster">Poster</label>
+                            <input 
+                                class="h-10 w-full outline-none border text-white border-gray-300 p-2 rounded-xl bg-background-secondary" 
+                                id="poster" 
+                                type="text" 
+                                formControlName="poster" 
+                                placeholder="URL do poster">
                         </div>
+                        <div *ngIf="IsSerie" class="flex flex-col w-full p-2">
+                            <label class="text-white" for="seasons">Temporadas</label>
+                            <input 
+                                class="h-10 w-full outline-none border text-white border-gray-300 p-2 rounded-xl bg-background-secondary" 
+                                id="seasons" 
+                                type="number" 
+                                formControlName="seasons" 
+                                placeholder="URL do poster">
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
@@ -61,7 +72,7 @@ import { Gender } from "../../../../services/gender/gender.types";
     imports: [CommonModule, ReactiveFormsModule]
 })
 export class FormMovieComponent implements OnInit {
-
+    @Input() IsSerie: boolean = false;
     @Input() form!: FormGroup;
     public genders: Gender[] = [];
 

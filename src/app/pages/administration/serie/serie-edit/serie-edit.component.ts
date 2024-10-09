@@ -21,7 +21,11 @@ import { Serie } from "../../../../services/serie/serie.type";
                 <div class="bg-primary h-[1px] w-full"></div>
             </div>
             <div class="flex w-full h-auto flex-col md:flex-row">
-                <app-form-movie class="w-full" [form]="serieForm"></app-form-movie>
+                <app-form-movie 
+                    class="w-full"
+                    [IsSerie]="true"
+                    [form]="serieForm"
+                ></app-form-movie>
             </div>
             <div class="w-full flex flex-col">
                 <div class="bg-primary h-[1px] w-full"></div>
@@ -75,6 +79,7 @@ export class SerieEditComponent implements OnInit{
           gender: new FormControl('', Validators.required),
           description: new FormControl('', Validators.required),
           poster: new FormControl('', Validators.required),
+          seasons: new FormControl('', Validators.required),
         });
     }
 
@@ -83,7 +88,8 @@ export class SerieEditComponent implements OnInit{
             title: this.serie.title,
             gender: this.serie.gender.id,
             description: this.serie.description,
-            poster: this.serie.poster
+            poster: this.serie.poster,
+            seasons: this.serie.seasons
         });
     }
 
@@ -92,15 +98,16 @@ export class SerieEditComponent implements OnInit{
             return;
         }
 
-        const movie = this.serieForm.getRawValue();
+        const serie = this.serieForm.getRawValue();
         const id = this.serie.id;
-        const modieEdit = {
-            title: movie.title,
-            poster: movie.poster,
-            description: movie.description,
-            genderId: this.serieForm.getRawValue().gender
+        const serieEdit = {
+            title: serie.title,
+            poster: serie.poster,
+            description: serie.description,
+            genderId: this.serieForm.getRawValue().gender,
+            seasons: serie.seasons
         }
-        this.serieService.editSerie(id, modieEdit).subscribe(() => {
+        this.serieService.editSerie(id, serieEdit).subscribe(() => {
             this.router.navigate(['/administration/serie-settings']);
         });
 
