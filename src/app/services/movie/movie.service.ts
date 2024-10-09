@@ -20,6 +20,9 @@ export class MovieService {
 
         // com GET deve ser usar o HttpParams para passar os parametros
         let params = new HttpParams();
+        if (filters.orderBy) {
+            params = params.set('orderBy', filters.orderBy);
+        }
 
         // adiciona o filtro como param se tiver
         if (filters?.title) {
