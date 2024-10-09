@@ -49,4 +49,8 @@ export class AdministrationComponent implements OnInit{
     onManageMovies(): void {
         this.router.navigate(['administration/movie-settings']);
     }
+
+    onManageSeries(): void {
+        this.router.navigate(['administration/serie-settings']);
+    }
 }

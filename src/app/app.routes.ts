@@ -44,6 +44,11 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/administration/movie/new-movie/new-movie.component').then(m => m.NewMovieComponent),
         title: 'Novo Filme',
       },
+      {
+        path: 'serie-settings',
+        loadComponent: () => import('./pages/administration/serie/serie-settings/serie-settings.component').then(m => m.SerieSettingsComponent),
+        title: 'Configurações de Séries',
+      }
     ]
   },
   {

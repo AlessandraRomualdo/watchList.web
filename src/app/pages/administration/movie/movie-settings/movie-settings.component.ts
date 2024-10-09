@@ -43,12 +43,9 @@ import { SearchBarComponent } from "../../components/search-bar/search-bar.compo
 export class MovieSettingsComponent implements OnInit{
 
     public movies: Movie[] = [];
-    
     public noMoviesFound: boolean = false;
-
     public form!: FormGroup;
 
-    
     constructor(
         private movieService: MovieService,
         
@@ -73,7 +70,6 @@ export class MovieSettingsComponent implements OnInit{
             gender: this.form.get('gender')?.value || '',
             orderBy: this.form.get('order')?.value || 'asc',
         };
-        console.log('filtros:', filterValues);
         this.movieService.getMovies(filterValues).subscribe((data: any) => {
             if (data.length === 0) {
               this.noMoviesFound = true;
