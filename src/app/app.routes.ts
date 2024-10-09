@@ -58,6 +58,11 @@ export const routes: Routes = [
         path: 'new-serie',
         loadComponent: () => import('./pages/administration/serie/new-serie/new-serie.component').then(m => m.NewSerieComponent),
         title: 'Nova Série',
+      },
+      {
+        path: 'user-settings',
+        loadComponent: () => import('./pages/administration/user/user-settings/user-settings.component').then(m => m.UserSettingsComponent),
+        title: 'Configurações de Usuários',
       }
     ]
   },

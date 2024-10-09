@@ -28,13 +28,11 @@ export class HomepageComponent implements OnInit{
         this.movieService.getMovies().subscribe((data: any) => {
           this.movies = data;
           this.media = this.movies.concat(this.series);
-          console.log(this.movies);
         });
     
         this.serieService.getSeries().subscribe((data: Serie[]) => {
           this.series = data;
           this.media = this.movies.concat(this.series);
-          console.log(this.series);
         });
       }
 }

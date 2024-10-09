@@ -53,4 +53,8 @@ export class AdministrationComponent implements OnInit{
     onManageSeries(): void {
         this.router.navigate(['administration/serie-settings']);
     }
+
+    onManageUsers(): void {
+        this.router.navigate(['administration/user-settings']);
+    }
 }
